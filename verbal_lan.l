@@ -1,6 +1,6 @@
 %{
 #include <stdio.h>
-#include "parser.tab.h"
+#include "parser_lan.tab.h"
 
 int line_num = 1;
 %}
@@ -20,15 +20,15 @@ int line_num = 1;
 [A-Z][a-zA-Z0-9]*@    {return IDENTIFIER;} 
 
 /* Operators and Symblols */
-"+" {return PLUS;}
-"-" {return MINUS;}
-"*" {return MULT;}
-"/" {return DIV;}
-"=" {return EQUAL;}
-";" {return SEMICOLON;}
-"," {return COMMA;}
-"(" {return LPAREN;}
-")" {return RPAREN;}
+"+" {return '+';}
+"-" {return '-';}
+"*" {return '*';}
+"/" {return '/';}
+"=" {return '=';}
+";" {return ';';}
+"," {return ',';}
+"(" {return '(';}
+")" {return ')';}
 
 "\\bye" { line_num++; } /* Για να αυξήσουμε τον μετρητή γραμμών */
 [ \t]+    {/* Για να αγνοούμε τα κενά και tabs*/}
