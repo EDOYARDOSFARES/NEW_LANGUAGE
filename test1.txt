@@ -1,0 +1,23 @@
+MINE# αυτο ειναι το πρωτο μου προγραμμα με την γλωσσα 
+MINE# bazingalang
+X@=20;
+Y@=10;
+C@=X@+Y@;
+D@=X@*Y@;
+E@=X@/2;
+bazinga("Apotelesmata:");
+\bye
+bazinga(C@);
+\bye
+bazinga(D@);
+\bye
+bazinga(E@);
+\bye
+Z@=empower(X@,3);
+N@=box(Y@);
+bazinga("Extra Apotelesmata:");
+\bye
+bazinga(Z@);
+\bye
+bazinga(N@);
+\bye

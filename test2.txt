@@ -1,0 +1,7 @@
+MINE# αυτο ειναι το 2o μου προγραμμα με την γλωσσα 
+MINE# bazingalang
+Makis@=40;
+Div@=Makis@/0;
+bazinga(Div@);
+\bye
+

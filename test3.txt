@@ -1,0 +1,7 @@
+MINE# αυτο ειναι το 3o μου προγραμμα με την γλωσσα 
+MINE# bazingalang
+alpha@=5;
+Beta@=alpha@+10;
+bazinga(Beta@);
+\bye
+
