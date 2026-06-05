@@ -60,7 +60,7 @@ int get_val(char *name){
 }
 
 // Δήλωση των Tokens που επιστρέφει το Flex και οι τιμές τους
-%token PRINT EMPOWER BOX 
+%token PRINT EMPOWER BOX BYE
 %token <number> INT_LITERAL
 %token <str> IDENTIFIER STRING_LITERAL
 
@@ -82,35 +82,31 @@ statement:
     IDENTIFIER '=' expression ';'{
         //Αποθήκευση μεταβλητής και τιμής στον πίνακα συμβόλων 
         set_val($1,$3);
-        printf("Εκχώρηση %s=%d\n",$1,$3);
         //Αποδέσμευση μνήμης string
         free($1);
     }
-    | PRINT '(' expression ')' ';'      {printf("bazinga %d\n",$3);}
-    | PRINT '(' STRING_LITERAL ')' ';'   {printf("bazinga %s\n",$3);
-        //Αποδέσμευσυ μνήμης string
-        free($3);    
-    }
+    | PRINT '(' expression ')' ';'      {printf("%d",$3);}
+    | PRINT '(' STRING_LITERAL ')' ';'   {printf("%s",$3);free($3);}   
+    | BYE   { printf("\n");}
     ;
 expression:
-    INT_LITERAL                             { $$ = $1; }
-    | IDENTIFIER                            { $$ = get_val($1); free($1); } //Διαβάσμα τιμής από τον πίνακα συμβόλων
-    | expression '+' expression             { $$ = $1 + $3; }
-    | expression '-' expression             { $$ = $1 - $3; }
-    | expression '*' expression             { $$ = $1 * $3; }
-    | expression '/' expression             { 
+    INT_LITERAL { $$ = $1; }
+    | IDENTIFIER    { $$ = get_val($1); free($1); } //Διαβάσμα τιμής από τον πίνακα συμβόλων
+    | expression '+' expression { $$ = $1 + $3; }
+    | expression '-' expression { $$ = $1 - $3; }
+    | expression '*' expression { $$ = $1 * $3; }
+    | expression '/' expression { 
         //Περίπτωση διαίρεσης με το 0
         if($3==0){
             yyerror("Σφάλμα διαίρεσης με το 0!");
-            //Θέτω το αποτέλεσμα ίσο με 0 για να αποφύγω το κρασάρισμα
-            $$=0;
+            exit(1);
         }else{
             $$=$1/$3;
         }
     }
     | EMPOWER '(' expression ',' expression ')' { $$ = pow($3, $5); }
-    | BOX '(' expression ')'                { $$ = $3 * $3; }
-    | '(' expression ')'                    { $$ = $2; }
+    | BOX '(' expression ')'    { $$ = $3 * $3; }
+    | '(' expression ')'    { $$ = $2; }
     ;
 
 %%
